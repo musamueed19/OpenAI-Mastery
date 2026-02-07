@@ -1,5 +1,15 @@
 from flask import Flask, render_template
 
+import os
+from dotenv import load_dotenv
+
+# load environment variables from .env file
+load_dotenv()
+
+# get env variable using og.getenv
+openai_key = os.getenv("OPENAI_API_KEY")
+
+
 app = Flask(__name__, template_folder='templates')
 
 @app.route("/", methods=["GET"])
