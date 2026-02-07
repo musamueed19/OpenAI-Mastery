@@ -1,5 +1,6 @@
 from pathlib import Path
-import pandas as pd
+from extract_bronze_layer import extract_to_bronze
+from transform_silver_layer import transform_to_silver
 
 RAW_URL = "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/tips.csv"
 
@@ -10,9 +11,10 @@ GOLD = Path("data/gold")
 for p in [BRONZE, SILVER, GOLD]:
     print(f"Creating directory: {p}")
     p.mkdir(parents=True, exist_ok=True)
-  
-def extract_to_bronze():  
-    df = pd.read_csv(RAW_URL)
-    print(df.head())
-    
-extract_to_bronze()
+
+
+if __name__ == "__main__":
+    # extract raw CSV into the bronze layer
+    p = extract_to_bronze(BRONZE)
+    # transform bronze -> silver
+    transform_to_silver(bronze_path=p, SILVER=SILVER)

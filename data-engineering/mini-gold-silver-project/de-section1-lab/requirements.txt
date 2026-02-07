@@ -2,6 +2,7 @@ python-dotenv
 openai
 
 # data engineering - tools
+numpy
 pandas
 pyarrow
 duckdb
