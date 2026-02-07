@@ -1,0 +1,16 @@
+python-dotenv
+openai
+
+# data engineering - tools
+pandas
+pyarrow
+duckdb
+pandera # Pandera is a lightweight data validation library for Python, built on top of pandas.
+# It provides a simple and intuitive API for defining data schemas and validating data against those schemas.
+# With Pandera, you can easily ensure that your data meets certain quality standards before processing it further.
+seaborn
+pathlib
+
+# Ingest - Bronze (10 min)
+# Clean/Transform - Silver (15-20 min)
+# Aggregate/Serve - Silver (10 min)
