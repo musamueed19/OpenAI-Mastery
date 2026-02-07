@@ -14,7 +14,8 @@ def transform_to_silver(bronze_path: Path, SILVER: Path) -> Path:
     df["tip_pct"] = (df["tip"] / df["total_bill"]).round(4)
 
     # simple synthetic timestamp for demo (hourly sequence)
-    df["visit_datetime"] = pd.date_range("2024-01-01", periods=len(df), freq="H")
+    # use lowercase 'h' for hourly frequency to be compatible across pandas versions
+    df["visit_datetime"] = pd.date_range("2024-01-01", periods=len(df), freq="h")
 
     # basic type tweaks
     cat_cols = ["sex", "smoker", "day", "time"]

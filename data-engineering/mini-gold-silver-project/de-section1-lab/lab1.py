@@ -1,6 +1,18 @@
 from pathlib import Path
 from extract_bronze_layer import extract_to_bronze
 from transform_silver_layer import transform_to_silver
+import os
+
+# Ensure the venv uses a valid CA bundle. If certifi is installed this will
+# point SSL operations (urllib / pandas) at certifi's bundle and avoid
+# macOS/python.org certificate verification errors.
+try:
+    import certifi
+    os.environ.setdefault("SSL_CERT_FILE", certifi.where())
+except Exception:
+    # if certifi isn't available we'll fall back to the system settings and
+    # a failing SSL will raise an explicit error during the network call.
+    pass
 
 RAW_URL = "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/tips.csv"
 

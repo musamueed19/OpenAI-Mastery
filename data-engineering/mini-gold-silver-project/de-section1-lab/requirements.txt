@@ -15,3 +15,6 @@ pathlib
 # Ingest - Bronze (10 min)
 # Clean/Transform - Silver (15-20 min)
 # Aggregate/Serve - Silver (10 min)
+
+
+certifi
