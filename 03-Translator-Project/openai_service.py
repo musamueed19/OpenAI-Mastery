@@ -1,13 +1,13 @@
 from openai import OpenAI
 
 class OpenAIService:
-    def __init__(self, api_key=openai_key):
+    def __init__(self, api_key):
         self.client = OpenAI(api_key=api_key)
 
-    def translate_text(self, text, target_language):
+    def translate_text(self, original_text, target_language):
         prompt = f"""
         Translate the below text paragraph to this target language: {target_language},
-        text paragraph: {text}
+        text paragraph: {original_text}
         """
         
         response = self.client.chat.completions.create(

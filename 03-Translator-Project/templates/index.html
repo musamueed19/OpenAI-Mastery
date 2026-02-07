@@ -16,7 +16,7 @@
         <!-- Title -->
         <h1 class="text-3xl sm:text-4xl font-bold text-center mb-6">AI-Powered Translator</h1>
 
-        <!-- form -->
+         <!-- form -->
         <form method="post">
             <!-- Text Area - Container -->
             <div class="mb-4">
@@ -34,11 +34,14 @@
                 <select id="target_language" name="target_language"
                     class="w-full px-2 py-3 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <!-- <option value="" disabled selected>Select a language</option> -->
-                    <option value="sp">Spanish</option>
-                    <option value="fr">French</option>
-                    <option value="ge">German</option>
-                    <option value="ch">Chinese</option>
-                    <option value="ja" selected>Japanese</option>
+                    <option value="spanis">Spanish</option>
+                    <option value="french">French</option>
+                    <option value="urdu">Urdu</option>
+                    <option value="german">German</option>
+                    <option value="chinese">Chinese</option>
+                    <option value="pashto-KPK">Pashto - KPK</option>
+                    <option value="arabic">Arabic</option>
+                    <option value="japanese" selected>Japanese</option>
                 </select>
             </div>
 
@@ -48,6 +51,14 @@
                     class="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">Translate</button>
             </div>
         </form>
+
+        {% if translated_text %}
+        <!-- Translated Text - Container -->
+        <div class="mt-6">
+            <h2 class="text-2xl font-semibold mb-2">Translated Text:</h2>
+            <div class="p-4 bg-gray-800 rounded-md text-white whitespace-pre-wrap">{{ translated_text }}</div>
+        </div>
+        {% endif %}
 
     </div>
 
