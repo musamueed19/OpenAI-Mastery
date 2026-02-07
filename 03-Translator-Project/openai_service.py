@@ -19,6 +19,7 @@ class OpenAIService:
                 }
             ],
             n=1,
+            max_tokens=1000
         )
         print(response.choices[0].message.content.strip())
         return response.choices[0].message.content.strip()
