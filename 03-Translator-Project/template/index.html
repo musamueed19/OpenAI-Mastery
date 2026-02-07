@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Translator</title>
+</head>
+
+<body class="bg-black/95 flex justify-center items-center h-screen">
+
+    <!-- Modal Container -->
+    <div
+        class="h-full sm:h-fit w-full max-w-3xl bg-gray-900/80 sm:rounded-lg border-gray-700 border-2 min-h-84 text-white py-4 px-2 sm:px-8">
+
+        <!-- Title -->
+        <h1 class="text-3xl sm:text-4xl font-bold text-center mb-6">AI-Powered Translator</h1>
+
+        <!-- form -->
+        <form method="post">
+            <!-- Text Area - Container -->
+            <div class="mb-4">
+                <label for="original_text" class="block text-gray-300 text-lg font-semibold mb-2">Text to
+                    Translate:</label>
+                <textarea id="original_text" name="original_text" rows="3"
+                    class="w-full p-2 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Enter text here..."></textarea>
+            </div>
+
+            <!-- Select Language -->
+            <div class="mb-4">
+                <label for="target_language" class="block text-gray-300 text-lg font-semibold mb-2">Select Target
+                    Language:</label>
+                <select id="target_language" name="target_language"
+                    class="w-full p-2 rounded-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <!-- <option value="" disabled selected>Select a language</option> -->
+                    <option value="sp">Spanish</option>
+                    <option value="fr">French</option>
+                    <option value="ge">German</option>
+                    <option value="ch">Chinese</option>
+                    <option value="ja" selected>Japanese</option>
+                </select>
+            </div>
+
+            <!-- Button -->
+            <div class="flex justify-center">
+                <button type="submit"
+                    class="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">Translate</button>
+            </div>
+        </form>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+</body>
+
+</html>
