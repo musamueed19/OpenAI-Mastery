@@ -38,14 +38,13 @@ eassy_prompt = ChatPromptTemplate.from_messages([
 
 title_chain = topic_prompt | llm
 eassy_chain = eassy_prompt | llm
-final_chain = title_chain | StrOutputParser() | eassy_chain
+final_chain = title_chain | StrOutputParser() | (lambda title: (st.subheader(f"Speech Title: {title}"), title)[1]) | eassy_chain
 
 if topic:
     try:
         speech = final_chain.invoke({
             "topic": topic,
         })
-        st.subheader(f"Speech on {topic}:")
         st.write(speech.content)
     except Exception as e:
         st.error(f"Error calling the LLM: {type(e).__name__}: {e}")
