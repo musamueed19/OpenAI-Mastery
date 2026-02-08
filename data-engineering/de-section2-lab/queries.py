@@ -3,15 +3,31 @@ class DBQueryClass:
         self.db_cursor = db_cursor
 
     def execute_query(self, query):
-        """Execute a query using the connection's cursor and return all rows."""
+        """Execute a query using the provided cursor and return all rows."""
+        # db_cursor is a sqlite3 cursor in this project; reuse it directly
         self.db_cursor.execute(query)
         return self.db_cursor.fetchall()
+
+    def execute_query_with_columns(self, query):
+        """Execute a query and return (column_names, rows).
+
+        column_names is a list of strings (from cursor.description) and rows
+        is the result of fetchall(). This works with a sqlite3 cursor.
+        """
+        self.db_cursor.execute(query)
+        cols = [col[0] for col in (self.db_cursor.description or [])]
+        rows = self.db_cursor.fetchall()
+        return cols, rows
 
     def get_all_customers(self):
         """Get all customers using the central execute_query helper."""
         query = "SELECT * FROM customers"
         print("\nAll Customers:")
-        rows = self.execute_query(query)
+        cols, rows = self.execute_query_with_columns(query)
+        if cols:
+            # print header
+            print(" | ".join(cols))
+            print("-" * (len(" | ".join(cols))))
         for row in rows:
             print(row)
 
@@ -28,6 +44,9 @@ class DBQueryClass:
             """
         )
         print("\nOrder Details:")
-        rows = self.execute_query(query)
+        cols, rows = self.execute_query_with_columns(query)
+        if cols:
+            print(" | ".join(cols))
+            print("-" * (len(" | ".join(cols))))
         for row in rows:
             print(row)
