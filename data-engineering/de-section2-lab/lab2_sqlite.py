@@ -1,7 +1,7 @@
 import sqlite3
 
 from data_seed import seed_data
-from queries import get_all_customers
+from queries import DBQueryClass
 
 # connect to database (file-based)
 db = sqlite3.connect("ecommerce_store.db")
@@ -51,7 +51,10 @@ seed_data(db_cursor=db_cursor)
 db.commit()
 
 # queries data
-get_all_customers(db_cursor=db_cursor)
+query_client = DBQueryClass(db_cursor=db_cursor)
+
+query_client.get_all_customers()
+query_client.get_order_details()
 
 
 
