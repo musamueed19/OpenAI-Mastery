@@ -25,7 +25,8 @@ speech_prompt = PromptTemplate(
     template=CREATE_SPEECH_FROM_TITLE_PROMPT,
 )
 
-llm = ChatOpenAI(model="gpt-3.5-turbo", api_key=OPENAI_API_KEY, n=1, max_tokens=700)
+gpt_three_turbo = ChatOpenAI(model="gpt-3.5-turbo", api_key=OPENAI_API_KEY, n=1, max_tokens=700)
+gpt_three_sub_version_turbo = ChatOpenAI(model="gpt-3.5-turbo-0125", api_key=OPENAI_API_KEY, n=1, max_tokens=700)
 topic_prompt = ChatPromptTemplate.from_messages([
     ("system", "You are a helpful assistant that generates speech titles and speeches based on a given topic."),
     ("human", title_prompt.template),
@@ -36,8 +37,8 @@ eassy_prompt = ChatPromptTemplate.from_messages([
     ("human", speech_prompt.template),
 ])
 
-title_chain = topic_prompt | llm
-eassy_chain = eassy_prompt | llm
+title_chain = topic_prompt | gpt_three_turbo
+eassy_chain = eassy_prompt | gpt_three_sub_version_turbo
 final_chain = title_chain | StrOutputParser() | (lambda title: (st.subheader(f"Speech Title: {title}"), title)[1]) | eassy_chain
 
 if topic:
