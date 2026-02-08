@@ -50,3 +50,31 @@ class DBQueryClass:
             print("-" * (len(" | ".join(cols))))
         for row in rows:
             print(row)
+
+    def update_order_quantity(self, order_id, new_quantity):
+        """Update the quantity of an order and print the updated order details."""
+        update_query = f"""
+            UPDATE orders
+            SET quantity = {new_quantity}
+            WHERE order_id = {order_id}
+        """
+        self.db_cursor.execute(update_query)
+        self.db_cursor.connection.commit()  # commit the update
+
+        # Fetch and print the updated order details
+        print(f"\nUpdated Order Details for Order ID {order_id}:")
+        query = f"""
+            SELECT o.order_id, c.name AS customer_name, p.name AS product_name,
+                   p.price AS unit_price, o.quantity,
+                   (o.quantity * p.price) AS total_price, o.order_date
+            FROM orders o
+            JOIN customers c ON c.customer_id = o.customer_id
+            JOIN products p ON p.product_id = o.product_id
+            WHERE o.order_id = {order_id}
+        """
+        cols, rows = self.execute_query_with_columns(query)
+        if cols:
+            print(" | ".join(cols))
+            print("-" * (len(" | ".join(cols))))
+        for row in rows:
+            print(row)

@@ -55,6 +55,7 @@ query_client = DBQueryClass(db_cursor=db_cursor)
 
 query_client.get_all_customers()
 query_client.get_order_details()
+# query_client.update_order_quantity(order_id=2, new_quantity=3)
 
 
 
